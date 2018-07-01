@@ -4,6 +4,14 @@ import ReactDOM from 'react-dom';
 //import App from './App';
 //import registerServiceWorker from './registerServiceWorker';
 
+const Display = ({ counter }) => <div>{counter}</div>
+
+const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -12,17 +20,25 @@ class App extends React.Component {
     }
   }
 
+  asetaArvoon = (arvo) => () => this.setState({ counter: arvo })
+
   render() {
     return (
       <div>
-        <div>{this.state.counter}</div>
+        <Display counter={this.state.counter} />
         <div>
-          <button onClick={() => this.setState({ counter: this.state.counter + 1})}>
-            plus
-          </button>
-          <button onClick={() => this.setState({ counter: 0})}>
-            zero
-          </button>
+          <Button
+            handleClick={this.asetaArvoon(this.state.counter+1)}
+            text='plus'
+          />
+          <Button
+            handleClick={this.asetaArvoon(this.state.counter-1)}
+            text='Minus'
+          />
+          <Button
+            handleClick={this.asetaArvoon(0)}
+            text="zero"
+          />
         </div>
       </div>
     )
