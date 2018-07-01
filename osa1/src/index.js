@@ -4,12 +4,18 @@ import ReactDOM from 'react-dom';
 //import App from './App';
 //import registerServiceWorker from './registerServiceWorker';
 
-const Hello = (props) => {
-  return (
-    <div>
-      <p>Hello {props.name}, you are {props.age} years old</p>
-    </div>
-  )
+class Hello extends React.Component {
+  render () {
+    const {name, age} = this.props
+    const bornYear = () => new Date().getFullYear() - age
+
+    return (
+      <div>
+        <p>Hello {name}, you are {age} years old <br />
+        So you were probably born {bornYear()}</p>
+        </div>
+    )
+  }
 }
 
 const App = () => {
