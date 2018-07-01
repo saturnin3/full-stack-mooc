@@ -10,16 +10,21 @@ class App extends React.Component {
     this.state = {
       counter: 1
     }
-
-    setInterval( () => {
-      this.setState({ counter: this.state.counter + 1})
-    }, 1000)
   }
 
   render() {
-    console.log('renderöidään', this.state.counter)
     return (
-      <div>{this.state.counter}</div>
+      <div>
+        <div>{this.state.counter}</div>
+        <div>
+          <button onClick={() => this.setState({ counter: this.state.counter + 1})}>
+            plus
+          </button>
+          <button onClick={() => this.setState({ counter: 0})}>
+            zero
+          </button>
+        </div>
+      </div>
     )
   }
 }
