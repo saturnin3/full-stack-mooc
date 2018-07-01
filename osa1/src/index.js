@@ -4,30 +4,29 @@ import ReactDOM from 'react-dom';
 //import App from './App';
 //import registerServiceWorker from './registerServiceWorker';
 
-class Hello extends React.Component {
-  render () {
-    const {name, age} = this.props
-    const bornYear = () => new Date().getFullYear() - age
-
-    return (
-      <div>
-        <p>Hello {name}, you are {age} years old <br />
-        So you were probably born {bornYear()}</p>
-        </div>
-    )
-  }
+const App = (props) => {
+  const {counter} = props
+  return (
+    <div>{counter.value}</div>
+  )
 }
 
-const App = () => {
-const nimi = 'Pekka'
-const ika = 10
-return (
-  <div>
-    <h1>Greetings</h1>
-    <Hello name = "Arto" age={26+10}/>
-    <Hello name= {nimi} age={ika}/>
-  </div>
-)}
+const counter = {
+  value: 1
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const renderoi = () => {
+  ReactDOM.render(
+    <App counter={counter} />,
+    document.getElementById('root')
+  )
+}
+
+setInterval( () => {
+  renderoi()
+  counter.value += 1;
+}, 1000)
+
+
+//ReactDOM.render(<App counter={counter} />, document.getElementById('root'));
 //registerServiceWorker();
